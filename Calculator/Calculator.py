@@ -5,17 +5,22 @@ from numpy import size
 
 class Calculator:
     def __init__(self, master):
+        # Declaring title for the project
         master.title("Calculator")
+        # With the help of geometry function taking number of pixels of screen for project.
         master.geometry('357x420+0+0')
+        # Set the backgroung colour for calculator
         master.config(bg='#000')
+        # Resizing calculator is not possible.
         master.resizable(False, False)
 
         self.equation=StringVar()
         self.input_value=''
         Entry(width=20, bg='#fff', font=('Times New Roman Bold', 28), textvariable=self.equation).place(x=0,y=0)
 
-        #myFont = font.Font(family='Tahoma', size=9, weight='bold')
+        # myFont = font.Font(family='Tahoma', size=9, weight='bold')
 
+        # Creating buttons for taking input from the user.
         Button(width=11, height=4, text='(', relief='groove', bg='yellow', command=lambda:self.show('(')).place(x=0,y=50)
         Button(width=11, height=4, text=')', relief='groove', bg='yellow', command=lambda:self.show(')')).place(x=90,y=50)
         Button(width=11, height=4, text='%', relief='groove', bg='yellow', command=lambda:self.show('%')).place(x=180,y=50)
@@ -37,18 +42,22 @@ class Calculator:
         Button(width=11, height=4, text='=', relief='groove', bg='yellow', command=self.solve).place(x=270,y=350)
         Button(width=11, height=4, text='C', relief='groove', bg='red', command=self.clear).place(x=0,y=350)
 
+    # Function for input window
     def show(self, value):
         self.input_value+=str(value)
         self.equation.set(self.input_value)
 
+    # Declaring screen clear function
     def clear(self):
         self.input_value=''
         self.equation.set(self.input_value)
 
+    # Declaring the result of arithmetic calculations.
     def solve(self):
         result=eval(self.input_value)
         self.equation.set(result)
 
+# Main function
 base = Tk()
 Calculator=Calculator(base)
 base.mainloop()
