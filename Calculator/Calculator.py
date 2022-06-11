@@ -11,7 +11,7 @@ class Calculator:
         master.resizable(False, False)
 
         self.equation=StringVar()
-        self.entry_value=''
+        self.input_value=''
         Entry(width=20, bg='#fff', font=('Times New Roman Bold', 28), textvariable=self.equation).place(x=0,y=0)
 
         #myFont = font.Font(family='Tahoma', size=9, weight='bold')
@@ -38,17 +38,17 @@ class Calculator:
         Button(width=11, height=4, text='C', relief='groove', bg='red', command=self.clear).place(x=0,y=350)
 
     def show(self, value):
-        self.entry_value+=str(value)
-        self.equation.set(self.entry_value)
+        self.input_value+=str(value)
+        self.equation.set(self.input_value)
 
     def clear(self):
-        self.entry_value=''
-        self.equation.set(self.entry_value)
+        self.input_value=''
+        self.equation.set(self.input_value)
 
     def solve(self):
-        result=eval(self.entry_value)
+        result=eval(self.input_value)
         self.equation.set(result)
 
-root = Tk()
-Calculator=Calculator(root)
-root.mainloop()
+base = Tk()
+Calculator=Calculator(base)
+base.mainloop()
